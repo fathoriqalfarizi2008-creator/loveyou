@@ -2,45 +2,1039 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Untuk Kamu ♡</title>
-    <style>
-        body {
-            margin: 0;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: #10101c;
-            color: #fff4fa;
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090716">
+  <title>I Miss You 💗</title>
 
-        .heart {
-            font-size: 120px;
-            color: #ff3f91;
-            animation: beat 1s ease-in-out infinite;
-            filter: drop-shadow(0 0 20px #ff3f91);
-        }
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap');
 
-        h1 {
-            color: #ff9acb;
-        }
+    :root {
+      --pink: #ff6fba;
+      --purple: #b79aff;
+      --background: #090716;
+      --white: #fff3fa;
+    }
 
-        @keyframes beat {
-            0%, 100% { transform: scale(1); }
-            15% { transform: scale(1.15); }
-            30% { transform: scale(1); }
-            45% { transform: scale(1.08); }
-        }
-    </style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      min-height: 100dvh;
+      overflow: hidden;
+      background: var(--background);
+      color: var(--white);
+      font-family: "DM Sans", sans-serif;
+    }
+
+    button {
+      font: inherit;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button:focus-visible {
+      outline: 2px solid white;
+      outline-offset: 4px;
+    }
+
+    #stars, #effects {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    #stars {
+      z-index: 0;
+    }
+
+    #effects {
+      z-index: 5;
+    }
+
+    .nebula {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse at 20% 30%, #74306c35, transparent 45%),
+        radial-gradient(ellipse at 80% 70%, #4b388c40, transparent 45%),
+        radial-gradient(ellipse at 50% 50%, #170e3020, transparent 70%);
+      animation: nebulaMove 10s ease-in-out infinite alternate;
+    }
+
+    @keyframes nebulaMove {
+      from { transform: scale(1); opacity: .7; }
+      to { transform: scale(1.12); opacity: 1; }
+    }
+
+    .intro {
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 22px;
+      padding: 24px;
+      text-align: center;
+      background: #090716eF;
+      transition: opacity .9s ease, visibility .9s ease;
+    }
+
+    .intro.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .intro-heart {
+      font-size: clamp(65px, 15vw, 105px);
+      filter: drop-shadow(0 0 24px #ff6fba90);
+      animation: heartbeat 1.5s ease-in-out infinite;
+    }
+
+    .intro h1 {
+      font: italic 500 clamp(30px, 7vw, 48px) "Playfair Display", serif;
+      background: linear-gradient(90deg, #fff, #ff9bce, #c3a8ff, #fff);
+      background-size: 200% auto;
+      color: transparent;
+      background-clip: text;
+      animation: shimmer 4s linear infinite;
+    }
+
+    .intro p {
+      color: #c4b6d9;
+      line-height: 1.7;
+      max-width: 330px;
+      font-size: 14px;
+    }
+
+    .primary-button {
+      border: 1px solid #ffffff45;
+      padding: 13px 25px;
+      border-radius: 50px;
+      color: white;
+      background: linear-gradient(120deg, #db4e9c, #7956d8);
+      box-shadow: 0 0 28px #d65da640;
+      cursor: pointer;
+      transition: transform .25s, box-shadow .25s;
+    }
+
+    .primary-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 38px #d65da675;
+    }
+
+    .main-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      min-height: 100dvh;
+      padding: 28px 18px 100px;
+      text-align: center;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(18px);
+      transition: opacity 1.1s ease, transform 1.1s ease, visibility 1.1s;
+    }
+
+    .main-content.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .eyebrow {
+      color: #d8b7f5;
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .main-content h1 {
+      font: 500 clamp(32px, 7vw, 55px) "Playfair Display", serif;
+      line-height: 1.2;
+      margin-bottom: 12px;
+      background: linear-gradient(100deg, #fff, #ff9dce, #c8b3ff);
+      color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle {
+      color: #b9adc9;
+      font-size: 14px;
+      line-height: 1.8;
+      max-width: 340px;
+    }
+
+    .heart-stage {
+      position: relative;
+      display: grid;
+      place-items: center;
+      width: min(72vw, 300px);
+      height: min(65vw, 265px);
+      min-height: 220px;
+      margin: 8px 0 12px;
+    }
+
+    .heart-glow {
+      position: absolute;
+      width: 145px;
+      height: 145px;
+      border-radius: 50%;
+      background: #ff4d9e;
+      filter: blur(65px);
+      opacity: .35;
+      animation: glowPulse 2s ease-in-out infinite;
+    }
+
+    .heart-button {
+      position: relative;
+      z-index: 3;
+      display: grid;
+      place-items: center;
+      width: 190px;
+      height: 190px;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      animation: heartbeat 1.45s ease-in-out infinite;
+      filter: drop-shadow(0 0 20px #ff5da870);
+    }
+
+    .heart-button svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+
+    .heart-button:hover {
+      filter: drop-shadow(0 0 32px #ff5da8b0);
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      12% { transform: scale(1.08); }
+      24% { transform: scale(1); }
+      36% { transform: scale(1.05); }
+      50% { transform: scale(1); }
+    }
+
+    @keyframes glowPulse {
+      0%, 100% { transform: scale(.8); opacity: .2; }
+      50% { transform: scale(1.3); opacity: .5; }
+    }
+
+    @keyframes shimmer {
+      to { background-position: 200% center; }
+    }
+
+    .message {
+      font: italic 500 clamp(18px, 4vw, 23px) "Playfair Display", serif;
+      color: #f8c7e6;
+      margin: 8px 0;
+    }
+
+    .small-text {
+      color: #a99bbd;
+      font-size: 12px;
+      margin-top: 6px;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 23px;
+    }
+
+    .action-button {
+      position: relative;
+      z-index: 6;
+      padding: 11px 17px;
+      border-radius: 30px;
+      border: 1px solid #ffffff28;
+      color: #fff2fa;
+      background: #ffffff0b;
+      backdrop-filter: blur(10px);
+      cursor: pointer;
+      transition: background .2s, transform .2s, border-color .2s;
+      font-size: 13px;
+    }
+
+    .action-button:hover {
+      background: #b17ae32a;
+      border-color: #d9a5ff80;
+      transform: translateY(-2px);
+    }
+
+    .music-button {
+      position: fixed;
+      z-index: 10;
+      top: 20px;
+      right: 18px;
+      padding: 10px 14px;
+      border: 1px solid #ffffff30;
+      border-radius: 30px;
+      background: #ffffff0d;
+      color: white;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+      font-size: 12px;
+    }
+
+    .music-button.playing {
+      border-color: #ff83c4a0;
+      box-shadow: 0 0 18px #ff83c425;
+    }
+
+    .footer {
+      position: fixed;
+      z-index: 6;
+      bottom: 17px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      color: #837695;
+      font-size: 10px;
+      letter-spacing: 1px;
+      pointer-events: none;
+    }
+
+    .letter-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 30;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: #05030bdc;
+      backdrop-filter: blur(10px);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .35s, visibility .35s;
+    }
+
+    .letter-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .letter {
+      position: relative;
+      width: min(100%, 450px);
+      max-height: 80vh;
+      overflow-y: auto;
+      padding: 36px 28px;
+      border: 1px solid #f6a6db50;
+      border-radius: 22px;
+      background: linear-gradient(145deg, #24152f, #100d22 75%);
+      box-shadow: 0 0 70px #e75ba52b;
+      transform: translateY(18px) scale(.96);
+      transition: transform .35s;
+    }
+
+    .letter-overlay.open .letter {
+      transform: translateY(0) scale(1);
+    }
+
+    .letter h2 {
+      font: italic 500 30px "Playfair Display", serif;
+      color: #ffb4dd;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .letter p {
+      color: #ded1e8;
+      font-size: 14px;
+      line-height: 1.95;
+      margin-bottom: 13px;
+    }
+
+    .letter .signature {
+      color: #ffacd9;
+      font: italic 500 20px "Playfair Display", serif;
+      text-align: right;
+      margin-top: 22px;
+    }
+
+    .close-button {
+      position: absolute;
+      top: 12px;
+      right: 14px;
+      border: 0;
+      background: transparent;
+      color: #d9c6e8;
+      font-size: 25px;
+      cursor: pointer;
+      padding: 4px 8px;
+    }
+
+    .toast {
+      position: fixed;
+      z-index: 40;
+      left: 50%;
+      bottom: 65px;
+      width: max-content;
+      max-width: calc(100% - 36px);
+      padding: 12px 19px;
+      border: 1px solid #ffffff28;
+      border-radius: 30px;
+      background: #21152eeb;
+      color: #ffe0f2;
+      font-size: 13px;
+      text-align: center;
+      pointer-events: none;
+      opacity: 0;
+      transform: translate(-50%, 12px);
+      transition: opacity .3s, transform .3s;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    @media (max-width: 420px) {
+      .heart-button {
+        width: 160px;
+        height: 160px;
+      }
+
+      .heart-stage {
+        min-height: 190px;
+      }
+
+      .actions {
+        gap: 8px;
+      }
+
+      .action-button {
+        padding: 10px 13px;
+      }
+
+      .letter {
+        padding: 34px 22px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+
+    .creator {
+        display: block;
+        margin-top: 6px;
+        color: #d6a6ff;
+        font-size: 11px;
+        letter-spacing: 1.5px;
+        text-shadow: 0 0 12px #d6a6ff55;
+    }
+
+
+    .sender {
+        display: inline-block;
+        margin-top: 8px;
+        font: 500 13px "DM Sans", sans-serif;
+        letter-spacing: 0.5px;
+        color: #d6baff;
+    }
+
+  </style>
 </head>
+
 <body>
-    <div class="heart">♥</div>
-    <h1>Selamat Malam, Cantik 🌙</h1>
-    <p>Semoga malam ini membawa ketenangan untukmu. 💗</p>
+  <canvas id="stars" aria-hidden="true"></canvas>
+  <div class="nebula" aria-hidden="true"></div>
+  <canvas id="effects" aria-hidden="true"></canvas>
+
+  <!-- INTRO -->
+  <section class="intro" id="intro">
+    <div class="intro-heart" aria-hidden="true">💗</div>
+    <h1>A little something for you</h1>
+    <p>
+      Ada sesuatu yang ingin kusampaikan.
+      Luangkan sebentar waktumu, ya.
+    </p>
+    <button class="primary-button" id="enterButton">
+      Buka pesan kecil ini ✨
+    </button>
+  </section>
+
+  <!-- MUSIC -->
+  <button class="music-button" id="musicButton" aria-pressed="false">
+    ♫ Musik: Mati
+  </button>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content" id="mainContent">
+    <p class="eyebrow">A little universe of feelings</p>
+    <h1>For Someone Special</h1>
+    <p class="subtitle">
+      Di antara banyak hal di dunia ini,<br>
+      ada seseorang yang membuat semuanya terasa berbeda.
+    </p>
+
+    <div class="heart-stage">
+      <div class="heart-glow"></div>
+
+      <button
+        class="heart-button"
+        id="heartButton"
+        aria-label="Klik hati untuk melihat pesan"
+      >
+        <svg viewBox="0 0 200 180" role="img" aria-label="Hati berwarna merah muda">
+          <defs>
+            <linearGradient id="heartGradient" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#ffb2d9"/>
+              <stop offset="45%" stop-color="#ff5ba8"/>
+              <stop offset="100%" stop-color="#c52c86"/>
+            </linearGradient>
+            <filter id="heartShadow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="3"/>
+            </filter>
+          </defs>
+
+          <path
+            d="M100 165 C84 149 15 105 15 55 C15 15 65 0 100 39 C135 0 185 15 185 55 C185 105 116 149 100 165Z"
+            fill="#ff5ba8"
+            opacity=".35"
+            filter="url(#heartShadow)"
+            transform="translate(0 5)"
+          />
+
+          <path
+            d="M100 165 C84 149 15 105 15 55 C15 15 65 0 100 39 C135 0 185 15 185 55 C185 105 116 149 100 165Z"
+            fill="url(#heartGradient)"
+            stroke="#ffc2e2"
+            stroke-width="1.2"
+          />
+
+          <path
+            d="M45 44 C49 26 67 24 78 34"
+            fill="none"
+            stroke="#ffffff"
+            stroke-width="5"
+            stroke-linecap="round"
+            opacity=".65"
+          />
+          <circle cx="47" cy="58" r="3" fill="#fff" opacity=".8"/>
+        </svg>
+      </button>
+    </div>
+
+    <p class="message" id="mainMessage">You make the universe brighter ✨</p>
+    <p class="small-text">Klik hati di atas untuk kejutan kecil 💗</p>
+
+    <div class="actions">
+      <button class="action-button" id="letterButton">💌 Buka Surat</button>
+      <button class="action-button" id="wishButton">🌠 Make a Wish</button>
+      <button class="action-button" id="surpriseButton">💖 Kejutan</button>
+    </div>
+  </main>
+
+  <!-- LETTER -->
+  <div
+    class="letter-overlay"
+    id="letterOverlay"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="letterTitle"
+    aria-hidden="true"
+  >
+    <article class="letter">
+      <button class="close-button" id="closeLetter" aria-label="Tutup surat">
+        ×
+      </button>
+
+      <h2 id="letterTitle">A Letter for You 💌</h2>
+
+      <p>
+        Hai, kamu. 🌷
+      </p>
+
+      <p>
+        Aku cuma ingin bilang bahwa kehadiran seseorang bisa membuat
+        hari biasa terasa lebih istimewa. Kadang bukan tentang hal besar,
+        melainkan perhatian kecil yang membuat kita tersenyum.
+      </p>
+
+      <p>
+        Semoga hari-harimu dipenuhi hal baik, langkahmu dimudahkan,
+        dan kamu selalu punya alasan untuk tersenyum. Jangan lupa
+        menghargai dirimu sendiri, ya.
+      </p>
+
+      <p>
+        Kalau suatu hari dunia terasa melelahkan, semoga kamu tetap
+        menemukan sedikit cahaya di antara bintang-bintang.
+      </p>
+      
+      <p class="signature">
+        With a little love, 💗
+        <br>
+        <span class="sender">Dari, Fathoriq Alfarizi</span>
+      </p>
+
+    </article>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  
+<footer class="footer">
+  MADE WITH ♡ JUST FOR YOU
+  <span class="creator">by Fathoriq Alfarizi</span>
+</footer>
+
+
+  <script>
+    "use strict";
+
+    // ========================================
+    // 1. MENGAMBIL ELEMEN HTML
+    // ========================================
+
+    const $ = (id) => document.getElementById(id);
+
+    const intro = $("intro");
+    const enterButton = $("enterButton");
+    const mainContent = $("mainContent");
+    const heartButton = $("heartButton");
+    const letterButton = $("letterButton");
+    const wishButton = $("wishButton");
+    const surpriseButton = $("surpriseButton");
+    const letterOverlay = $("letterOverlay");
+    const closeLetter = $("closeLetter");
+    const musicButton = $("musicButton");
+    const mainMessage = $("mainMessage");
+    const toastElement = $("toast");
+
+    const starsCanvas = $("stars");
+    const effectsCanvas = $("effects");
+
+    const starsCtx = starsCanvas.getContext("2d");
+    const effectsCtx = effectsCanvas.getContext("2d");
+
+    // ========================================
+    // 2. NOTIFIKASI KECIL
+    // ========================================
+
+    let toastTimer;
+
+    function showToast(message) {
+      toastElement.textContent = message;
+      toastElement.classList.add("show");
+
+      clearTimeout(toastTimer);
+
+      toastTimer = setTimeout(() => {
+        toastElement.classList.remove("show");
+      }, 2600);
+    }
+
+    // ========================================
+    // 3. ANIMASI PEMBUKA
+    // ========================================
+
+    enterButton.addEventListener("click", () => {
+      intro.classList.add("hidden");
+      mainContent.classList.add("visible");
+
+      showToast("Semoga pesan kecil ini membuatmu tersenyum 💗");
+      burst(window.innerWidth / 2, window.innerHeight / 2, 45);
+    });
+
+    // ========================================
+    // 4. ANIMASI BINTANG
+    // ========================================
+
+    let width = 0;
+    let height = 0;
+    let pixelRatio = 1;
+    let stars = [];
+
+    function resizeCanvas() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+
+      [starsCanvas, effectsCanvas].forEach((canvas) => {
+        canvas.width = Math.round(width * pixelRatio);
+        canvas.height = Math.round(height * pixelRatio);
+        canvas.style.width = width + "px";
+        canvas.style.height = height + "px";
+      });
+
+      starsCtx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+      effectsCtx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+
+      const starCount = Math.min(
+        180,
+        Math.max(65, Math.floor((width * height) / 6500))
+      );
+
+      stars = Array.from({ length: starCount }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        radius: Math.random() * 1.5 + 0.3,
+        alpha: Math.random() * 0.7 + 0.2,
+        speed: Math.random() * 0.012 + 0.003,
+        phase: Math.random() * Math.PI * 2
+      }));
+    }
+
+    let lastStarFrame = 0;
+
+    function drawStars(time) {
+      starsCtx.clearRect(0, 0, width, height);
+
+      stars.forEach((star) => {
+        const twinkle =
+          0.45 + 0.55 * Math.sin(time * star.speed + star.phase);
+
+        starsCtx.beginPath();
+        starsCtx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+        starsCtx.fillStyle =
+          `rgba(255, 231, 255, ${star.alpha * twinkle})`;
+        starsCtx.fill();
+
+        star.y -= 0.025;
+
+        if (star.y < -3) {
+          star.y = height + 3;
+          star.x = Math.random() * width;
+        }
+      });
+
+      requestAnimationFrame(drawStars);
+    }
+
+    // ========================================
+    // 5. PARTIKEL HATI DAN BINTANG
+    // ========================================
+
+    let particles = [];
+
+    function burst(x, y, amount = 24) {
+      const colors = [
+        "#ff83c4",
+        "#ffd0e9",
+        "#c2a4ff",
+        "#ffffff",
+        "#ffb8d8"
+      ];
+
+      for (let i = 0; i < amount; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const speed = Math.random() * 3.8 + 1;
+
+        particles.push({
+          x,
+          y,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed - 0.6,
+          size: Math.random() * 4 + 1.5,
+          life: 1,
+          decay: Math.random() * 0.015 + 0.012,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          symbol: Math.random() > 0.75 ? "♥" : "✦"
+        });
+      }
+
+      if (particles.length > 450) {
+        particles = particles.slice(-450);
+      }
+    }
+
+    function drawEffects() {
+      effectsCtx.clearRect(0, 0, width, height);
+
+      particles = particles.filter((particle) => particle.life > 0);
+
+      particles.forEach((particle) => {
+        particle.x += particle.vx;
+        particle.y += particle.vy;
+        particle.vy += 0.025;
+        particle.vx *= 0.99;
+        particle.life -= particle.decay;
+
+        effectsCtx.globalAlpha = Math.max(0, particle.life);
+        effectsCtx.fillStyle = particle.color;
+        effectsCtx.font = `${particle.size * 4}px serif`;
+        effectsCtx.fillText(
+          particle.symbol,
+          particle.x,
+          particle.y
+        );
+      });
+
+      effectsCtx.globalAlpha = 1;
+      requestAnimationFrame(drawEffects);
+    }
+
+    // ========================================
+    // 6. INTERAKSI HATI
+    // ========================================
+
+    const heartMessages = [
+      "You make the universe brighter ✨",
+      "Some moments feel like magic 💗",
+      "A little happiness, just for you 🌷",
+      "You deserve all the beautiful things 🌙",
+      "Keep shining, little star ✨"
+    ];
+
+    let messageIndex = 0;
+
+    heartButton.addEventListener("click", () => {
+      const rect = heartButton.getBoundingClientRect();
+
+      burst(
+        rect.left + rect.width / 2,
+        rect.top + rect.height / 2,
+        40
+      );
+
+      messageIndex = (messageIndex + 1) % heartMessages.length;
+      mainMessage.textContent = heartMessages[messageIndex];
+
+      showToast("Satu hati kecil untukmu 💖");
+    });
+
+    // ========================================
+    // 7. MEMBUKA DAN MENUTUP SURAT
+    // ========================================
+
+    function openLetter() {
+      letterOverlay.classList.add("open");
+      letterOverlay.setAttribute("aria-hidden", "false");
+      closeLetter.focus();
+
+      burst(width / 2, height / 2, 25);
+    }
+
+    function hideLetter() {
+      letterOverlay.classList.remove("open");
+      letterOverlay.setAttribute("aria-hidden", "true");
+      letterButton.focus();
+    }
+
+    letterButton.addEventListener("click", openLetter);
+    closeLetter.addEventListener("click", hideLetter);
+
+    letterOverlay.addEventListener("click", (event) => {
+      if (event.target === letterOverlay) {
+        hideLetter();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && letterOverlay.classList.contains("open")) {
+        hideLetter();
+      }
+    });
+
+    // ========================================
+    // 8. TOMBOL MAKE A WISH
+    // ========================================
+
+    const wishes = [
+      "Semoga hari esok membawa kabar baik 🌠",
+      "Semoga satu impianmu semakin dekat ✨",
+      "Semoga hatimu selalu menemukan ketenangan 🌙",
+      "Semoga kamu dikelilingi orang-orang baik 💗",
+      "Semoga hal indah datang di waktu yang tepat 🌷",
+      "Semoga kamu bangga dengan dirimu sendiri ⭐"
+    ];
+
+    let lastWish = -1;
+
+    wishButton.addEventListener("click", () => {
+      let index;
+
+      do {
+        index = Math.floor(Math.random() * wishes.length);
+      } while (wishes.length > 1 && index === lastWish);
+
+      lastWish = index;
+
+      showToast(wishes[index]);
+      burst(
+        Math.random() * width,
+        height * (0.3 + Math.random() * 0.3),
+        45
+      );
+    });
+
+    // ========================================
+    // 9. TOMBOL KEJUTAN
+    // ========================================
+
+    surpriseButton.addEventListener("click", () => {
+      const messages = [
+        "Jangan lupa tersenyum hari ini 😊",
+        "Kamu pantas mendapatkan hal-hal baik 💗",
+        "Semoga ada kejutan manis di harimu 🌷",
+        "Simpan sedikit kebahagiaan untuk dirimu sendiri ✨"
+      ];
+
+      const message =
+        messages[Math.floor(Math.random() * messages.length)];
+
+      showToast(message);
+
+      for (let i = 0; i < 5; i++) {
+        setTimeout(() => {
+          burst(
+            Math.random() * width,
+            Math.random() * height * 0.7,
+            20
+          );
+        }, i * 160);
+      }
+    });
+
+    // ========================================
+    // 10. MUSIK INSTRUMENTAL SEDERHANA
+    // ========================================
+
+    let audioContext = null;
+    let masterGain = null;
+    let musicEnabled = false;
+    let noteTimer = null;
+    let noteIndex = 0;
+
+    const melody = [
+      [523.25, 0.35],
+      [659.25, 0.35],
+      [783.99, 0.5],
+      [659.25, 0.35],
+      [587.33, 0.35],
+      [659.25, 0.65],
+      [523.25, 0.35],
+      [392.00, 0.5],
+      [440.00, 0.35],
+      [523.25, 0.65],
+      [392.00, 0.35],
+      [349.23, 0.65]
+    ];
+
+    async function startMusic() {
+      const AudioContextClass =
+        window.AudioContext || window.webkitAudioContext;
+
+      if (!AudioContextClass) {
+        showToast("Browser ini belum mendukung audio.");
+        return;
+      }
+
+      try {
+        if (!audioContext) {
+          audioContext = new AudioContextClass();
+          masterGain = audioContext.createGain();
+          masterGain.gain.value = 0.12;
+          masterGain.connect(audioContext.destination);
+        }
+
+        if (audioContext.state === "suspended") {
+          await audioContext.resume();
+        }
+
+        musicEnabled = true;
+        musicButton.textContent = "♫ Musik: Nyala";
+        musicButton.classList.add("playing");
+        musicButton.setAttribute("aria-pressed", "true");
+
+        playNextNote();
+      } catch (error) {
+        musicEnabled = false;
+        showToast("Musik tidak bisa diputar di browser ini.");
+        console.error("Audio error:", error);
+      }
+    }
+
+    function playNextNote() {
+      if (!musicEnabled || !audioContext) return;
+
+      const [frequency, duration] = melody[noteIndex];
+
+      const oscillator = audioContext.createOscillator();
+      const noteGain = audioContext.createGain();
+      const now = audioContext.currentTime;
+
+      oscillator.type = "sine";
+      oscillator.frequency.setValueAtTime(frequency, now);
+
+      noteGain.gain.setValueAtTime(0.001, now);
+      noteGain.gain.exponentialRampToValueAtTime(0.35, now + 0.04);
+      noteGain.gain.exponentialRampToValueAtTime(
+        0.001,
+        now + duration
+      );
+
+      oscillator.connect(noteGain);
+      noteGain.connect(masterGain);
+
+      oscillator.start(now);
+      oscillator.stop(now + duration + 0.03);
+
+      noteIndex = (noteIndex + 1) % melody.length;
+
+      noteTimer = setTimeout(
+        playNextNote,
+        (duration + 0.08) * 1000
+      );
+    }
+
+    function stopMusic() {
+      musicEnabled = false;
+      clearTimeout(noteTimer);
+
+      musicButton.textContent = "♫ Musik: Mati";
+      musicButton.classList.remove("playing");
+      musicButton.setAttribute("aria-pressed", "false");
+    }
+
+    musicButton.addEventListener("click", () => {
+      if (musicEnabled) {
+        stopMusic();
+      } else {
+        startMusic();
+      }
+    });
+
+    // ========================================
+    // 11. MULAI SEMUA ANIMASI
+    // ========================================
+
+    window.addEventListener("resize", resizeCanvas);
+
+    resizeCanvas();
+    requestAnimationFrame(drawStars);
+    requestAnimationFrame(drawEffects);
+  </script>
 </body>
 </html>
